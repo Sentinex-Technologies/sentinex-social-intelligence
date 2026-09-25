@@ -1,0 +1,43 @@
+# ============================================================
+# SENTINEX SOCIAL INTELLIGENCE - Backend Dependencies
+# ============================================================
+# Phase 1: Backend Foundation
+# Minimal dependencies for FastAPI backend skeleton
+# ============================================================
+
+# FastAPI Framework
+fastapi==0.109.0
+
+# ASGI Server
+uvicorn[standard]==0.27.0
+
+# Testing
+pytest==7.4.4
+httpx==0.26.0
+
+# ============================================================
+# FUTURE DEPENDENCIES (Not needed for Phase 1)
+# ============================================================
+# These will be added in later phases:
+#
+# Data Processing:
+# - pandas
+# - numpy
+#
+# NLP & Analytics:
+# - spacy
+# - textblob
+# - vaderSentiment
+# - scikit-learn
+#
+# Network Analysis:
+# - networkx
+#
+# Database:
+# - sqlalchemy
+# - psycopg2-binary (PostgreSQL)
+#
+# Caching:
+# - redis
+#
+# ============================================================
