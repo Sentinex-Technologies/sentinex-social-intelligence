@@ -16,25 +16,46 @@ pytest==7.4.4
 httpx==0.26.0
 
 # ============================================================
-# FUTURE DEPENDENCIES (Not needed for Phase 1)
+# Phase 2: Data Collection & Network Analysis
+# ============================================================
+
+# Database ORM
+sqlalchemy==2.0.25
+
+# Configuration Management
+pydantic-settings==2.1.0
+python-dotenv==1.0.0
+
+# Data Processing
+numpy>=2.0.0
+scipy>=1.18.0  # Required for network centrality measures
+# pandas==2.1.4  # Requires Python 3.11 or older - skipped for now
+
+# Network Analysis (Component E - Link Topology)
+networkx==3.2.1
+
+# Synthetic Data Generation
+faker==22.0.0
+
+# Date/Time Utilities
+python-dateutil==2.8.2
+
+# ============================================================
+# FUTURE DEPENDENCIES (Phase 3+)
 # ============================================================
 # These will be added in later phases:
 #
-# Data Processing:
-# - pandas
-# - numpy
-#
-# NLP & Analytics:
+# NLP & Sentiment Analysis (Component B):
 # - spacy
 # - textblob
 # - vaderSentiment
-# - scikit-learn
+# - transformers (HuggingFace)
+# - torch (for advanced models)
 #
-# Network Analysis:
-# - networkx
+# Reddit API (Component A - optional):
+# - praw
 #
-# Database:
-# - sqlalchemy
+# Database (Production):
 # - psycopg2-binary (PostgreSQL)
 #
 # Caching:
