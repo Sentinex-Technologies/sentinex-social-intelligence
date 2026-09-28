@@ -41,24 +41,19 @@ faker==22.0.0
 python-dateutil==2.8.2
 
 # ============================================================
-# FUTURE DEPENDENCIES (Phase 3+)
+# Phase 3: Sentiment Analysis & Trend Detection
 # ============================================================
-# These will be added in later phases:
-#
-# NLP & Sentiment Analysis (Component B):
-# - spacy
-# - textblob
-# - vaderSentiment
-# - transformers (HuggingFace)
-# - torch (for advanced models)
-#
-# Reddit API (Component A - optional):
-# - praw
-#
-# Database (Production):
+
+# NLP & Sentiment Analysis (Component B)
+vaderSentiment==3.3.2
+textblob==0.17.1
+
+# ============================================================
+# FUTURE DEPENDENCIES (Phase 4+)
+# ============================================================
+# - transformers (HuggingFace) - for advanced models
+# - torch - for deep learning
+# - praw - Reddit API
 # - psycopg2-binary (PostgreSQL)
-#
-# Caching:
-# - redis
-#
+# - redis - caching
 # ============================================================
