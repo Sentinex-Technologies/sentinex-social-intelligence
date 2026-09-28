@@ -13,6 +13,7 @@ from app.api.health import router as health_router
 from app.api.data import router as data_router
 from app.api.network import router as network_router
 from app.api.posts import router as posts_router
+from app.api.sentiment import router as sentiment_router
 from app.database import init_db
 
 
@@ -49,7 +50,7 @@ app = FastAPI(
         "- Privacy-compliant\n"
         "- Hackathon-ready prototype"
     ),
-    version="0.2.0",
+    version="0.3.0",
     docs_url="/api/docs",
     redoc_url="/api/redoc",
     lifespan=lifespan
@@ -68,7 +69,8 @@ app.add_middleware(
 app.include_router(health_router, prefix="/api", tags=["Health"])
 app.include_router(data_router, prefix="/api/data", tags=["Data Management"])
 app.include_router(network_router, prefix="/api/network", tags=["Network Analysis (Component E)"])
-app.include_router(posts_router, prefix="/api/posts", tags=["Posts & Analytics (Components A, B, D)"])
+app.include_router(posts_router, prefix="/api/posts", tags=["Posts & Analytics (Components A, D)"])
+app.include_router(sentiment_router, prefix="/api/sentiment", tags=["Sentiment Analysis (Component B)"])
 
 
 @app.get("/")
