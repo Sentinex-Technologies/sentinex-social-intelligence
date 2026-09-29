@@ -8,6 +8,9 @@ const API_BASE = import.meta.env.VITE_API_BASE_URL
   ? `${import.meta.env.VITE_API_BASE_URL}/api`
   : '/api'
 
+// Base URL for assets (handles GitHub Pages subpath)
+const BASE_URL = import.meta.env.BASE_URL
+
 // Sentinex Brand Colors from Logo
 const COLORS = {
   primary: '#0066FF',
@@ -102,7 +105,7 @@ function App() {
       {/* Top Navigation Bar */}
       <nav className="nav-bar">
         <div className="nav-left">
-          <img src="/Sentinex_Logo.png" alt="Sentinex" className="nav-logo" />
+          <img src={`${BASE_URL}Sentinex_Logo.png`} alt="Sentinex" className="nav-logo" />
           <div className="nav-title">
             <h1>Sentinex Social Intelligence</h1>
             <p>AI-Powered Analytics Platform</p>
