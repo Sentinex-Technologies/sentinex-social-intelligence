@@ -1,504 +1,217 @@
-# 🚀 DEPLOYMENT GUIDE - GitHub Pages + Render
+# 🚀 Deployment Guide - Sentinex Social Intelligence
 
-**Project:** Sentinex Social Intelligence  
-**Frontend:** GitHub Pages (Static)  
-**Backend:** Render (Python/FastAPI)  
-**Date:** September 29, 2026
+## 📍 Live URLs
 
----
-
-## 📋 TABLE OF CONTENTS
-
-1. [Architecture Overview](#architecture-overview)
-2. [Prerequisites](#prerequisites)
-3. [Backend Deployment (Render)](#backend-deployment-render)
-4. [Frontend Deployment (GitHub Pages)](#frontend-deployment-github-pages)
-5. [Verification & Testing](#verification--testing)
-6. [Troubleshooting](#troubleshooting)
-7. [Production URLs](#production-urls)
+| Service | URL | Status |
+|---------|-----|--------|
+| **Frontend Dashboard** | [https://sentinex-technologies.github.io/sentinex-social-intelligence/](https://sentinex-technologies.github.io/sentinex-social-intelligence/) | ✅ **LIVE** |
+| **Backend API** | [https://sentinex-api.onrender.com/](https://sentinex-api.onrender.com/) | ✅ **OPERATIONAL** |
+| **API Documentation** | [https://sentinex-api.onrender.com/api/docs](https://sentinex-api.onrender.com/api/docs) | ✅ **AVAILABLE** |
 
 ---
 
-## 🏗️ ARCHITECTURE OVERVIEW
+## 🎯 Current Status
 
-```
-┌──────────────────────────────────────────┐
-│   GitHub Pages (Frontend)                │
-│   https://sentinex-technologies          │
-│   .github.io/sentinex-social-intelligence│
-│                                           │
-│   - React 18 + Vite                      │
-│   - Static HTML/CSS/JS                   │
-│   - Auto-deploy on push to main          │
-└────────────────┬─────────────────────────┘
-                 │
-                 │ HTTPS API Calls
-                 ↓
-┌──────────────────────────────────────────┐
-│   Render (Backend)                       │
-│   https://sentinex-api.onrender.com      │
-│                                           │
-│   - FastAPI (Python 3.14)                │
-│   - SQLite Database                      │
-│   - CORS enabled for GitHub Pages        │
-│   - Auto-deploy from GitHub              │
-└──────────────────────────────────────────┘
-```
+### ✅ Deployment Complete (Sep 29, 2026)
+
+**Frontend:** GitHub Pages
+- React + Vite production build
+- Auto-deploys on push to `main`
+- Base URL: `/sentinex-social-intelligence/`
+- Connected to Render backend API
+
+**Backend:** Render Free Tier
+- FastAPI + SQLite
+- Python 3.12
+- Auto-deploys on push to `main`
+- 100 users, 1000 posts, 58K+ engagements
 
 ---
 
-## ✅ PREREQUISITES
+## 📊 Database Status
 
-### 1. Accounts Required:
-- ✅ GitHub account (you have this)
-- ✅ Render account (free tier) - https://render.com
+**Current Data:**
+- ✅ 100 synthetic users with demographics
+- ✅ 1000 social media posts (across 6 platforms)
+- ✅ 2127 network relationships
+- ✅ 58,895 engagement events
+- ✅ Sentiment analysis complete
+- ✅ Network topology computed
 
-### 2. Repository Access:
-- ✅ Admin access to `Sentinex-Technologies/sentinex-social-intelligence`
-
-### 3. Tools Installed:
-- ✅ Git
-- ✅ Node.js 18+
-- ✅ npm
-
----
-
-## 🔧 BACKEND DEPLOYMENT (RENDER)
-
-### Step 1: Login to Render
-
-1. Go to https://dashboard.render.com
-2. Login with GitHub (if not already)
-3. You should see your dashboard
-
-### Step 2: Create New Web Service
-
-1. Click **"New +"** button (top right)
-2. Select **"Web Service"**
-3. Click **"Build and deploy from a Git repository"**
-4. Click **"Next"**
-
-### Step 3: Connect Repository
-
-1. If you haven't connected GitHub yet:
-   - Click **"Connect GitHub"**
-   - Authorize Render to access your repositories
-   - Grant access to Sentinex-Technologies organization
-
-2. Find and select: **`sentinex-social-intelligence`**
-3. Click **"Connect"**
-
-### Step 4: Configure Service
-
-Fill in the following details:
-
-**Basic Settings:**
-- **Name:** `sentinex-api` (or any name you prefer)
-- **Region:** Singapore (closest to India)
-- **Branch:** `main`
-- **Root Directory:** `backend`
-
-**Build & Deploy:**
-- **Runtime:** `Python 3`
-- **Build Command:** `pip install -r requirements.txt`
-- **Start Command:** `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
-
-**Plan:**
-- Select **"Free"** (perfect for demo)
-
-**Advanced Settings (Click "Advanced"):**
-
-Add these Environment Variables:
-- **Key:** `PYTHON_VERSION` | **Value:** `3.14.0`
-- **Key:** `DATABASE_URL` | **Value:** `sqlite:///./sentinex.db`
-- **Key:** `ENVIRONMENT` | **Value:** `production`
-
-**Health Check:**
-- **Path:** `/api/health`
-
-### Step 5: Deploy
-
-1. Scroll down and click **"Create Web Service"**
-2. ⏳ Wait 3-5 minutes for deployment
-3. Watch the build logs for any errors
-4. ✅ When you see "Your service is live 🎉", it's ready!
-
-### Step 6: Get Your Backend URL
-
-1. On the service page, you'll see your URL:
-   - Example: `https://sentinex-api.onrender.com`
-2. **Copy this URL** - you'll need it for the frontend!
-3. Test it by visiting: `https://your-url.onrender.com/api/docs`
-4. You should see the FastAPI Swagger documentation
+**Platform Distribution:**
+- Twitter: 195 posts
+- YouTube: 199 posts
+- Instagram: 168 posts
+- Telegram: 159 posts
+- Facebook: 156 posts
+- Reddit: 123 posts
 
 ---
 
-## 🎨 FRONTEND DEPLOYMENT (GITHUB PAGES)
+## 🔧 How to Generate/Regenerate Data
 
-### Step 1: Update Frontend Environment
+### Option 1: Using API Docs (GUI)
+1. Visit: https://sentinex-api.onrender.com/api/docs
+2. Find `POST /api/data/generate`
+3. Click "Try it out"
+4. Set parameters:
+   - `num_users`: 100
+   - `num_posts`: 1000
+   - `days_back`: 30
+   - `seed`: (optional, for reproducibility)
+5. Click "Execute"
+6. Wait ~45 seconds for completion
 
-1. Open file: `frontend-react/.env.production`
-2. Replace the URL with YOUR Render backend URL:
-
-```env
-VITE_API_BASE_URL=https://YOUR-RENDER-URL.onrender.com
-```
-
-**Example:**
-```env
-VITE_API_BASE_URL=https://sentinex-api.onrender.com
-```
-
-3. Save the file
-
-### Step 2: Commit and Push Changes
-
+### Option 2: Using cURL
 ```bash
-# Check status
-git status
-
-# Add all changes
-git add .
-
-# Commit
-git commit -m "feat: Add deployment configuration for GitHub Pages and Render
-
-✅ Vite config updated for GitHub Pages
-✅ GitHub Actions workflow added
-✅ Render configuration added
-✅ CORS updated for production
-✅ API base URL configured
-
-Deployment ready!"
-
-# Push to main branch
-git push origin feature/deployment-github-pages-render
+curl -X POST "https://sentinex-api.onrender.com/api/data/generate?num_users=100&num_posts=1000&days_back=30"
 ```
 
-### Step 3: Merge to Main
+### Option 3: Using Python
+```python
+import requests
 
-1. Go to GitHub repository
-2. Create Pull Request from `feature/deployment-github-pages-render` to `main`
-3. Review changes
-4. Click **"Merge Pull Request"**
-5. Click **"Confirm Merge"**
-
-### Step 4: Enable GitHub Pages
-
-1. Go to repository **Settings**
-2. Scroll down to **"Pages"** section (left sidebar)
-3. Under **"Build and deployment"**:
-   - **Source:** Select **"GitHub Actions"**
-4. Click **"Save"**
-
-### Step 5: Trigger Deployment
-
-GitHub Actions will automatically deploy when you push to main. To manually trigger:
-
-1. Go to **"Actions"** tab in GitHub
-2. Select **"Deploy Frontend to GitHub Pages"** workflow
-3. Click **"Run workflow"** button
-4. Select branch: `main`
-5. Click **"Run workflow"**
-
-### Step 6: Wait for Deployment
-
-1. Watch the workflow run (takes 2-3 minutes)
-2. ✅ When completed, you'll see a green checkmark
-3. Your frontend URL will be:
-   ```
-   https://sentinex-technologies.github.io/sentinex-social-intelligence/
-   ```
+response = requests.post(
+    "https://sentinex-api.onrender.com/api/data/generate",
+    params={
+        "num_users": 100,
+        "num_posts": 1000,
+        "days_back": 30
+    }
+)
+print(response.json())
+```
 
 ---
 
-## ✅ VERIFICATION & TESTING
+## 🧹 How to Clear Data
 
-### 1. Test Backend (Render)
+**⚠️ WARNING: This is destructive and cannot be undone!**
 
+### Using API Docs:
+1. Visit: https://sentinex-api.onrender.com/api/docs
+2. Find `DELETE /api/data/clear`
+3. Set `confirm` = `YES_DELETE_ALL`
+4. Click "Execute"
+
+### Using cURL:
 ```bash
-# Test health endpoint
-curl https://your-backend-url.onrender.com/api/health
-
-# Expected response:
-{
-  "status": "healthy",
-  "database": "connected",
-  "timestamp": "2026-09-29T..."
-}
-```
-
-### 2. Test API Documentation
-
-Visit: `https://your-backend-url.onrender.com/api/docs`
-
-You should see:
-- ✅ FastAPI Swagger UI
-- ✅ All API endpoints listed
-- ✅ Can test endpoints interactively
-
-### 3. Test Frontend
-
-Visit: `https://sentinex-technologies.github.io/sentinex-social-intelligence/`
-
-You should see:
-- ✅ Sentinex dashboard loads
-- ✅ Logo and styling appear correctly
-- ✅ Components load (may show empty data initially)
-
-### 4. Generate Demo Data
-
-1. On the frontend dashboard
-2. Click **"Generate Demo Data"** button
-3. ⏳ Wait 30-60 seconds (Render free tier cold start)
-4. ✅ Data should populate all cards
-
-### 5. End-to-End Test
-
-Complete workflow test:
-
-1. ✅ Generate demo data
-2. ✅ Click "Analyze Sentiments"
-3. ✅ All 6 cards show data
-4. ✅ Charts render correctly
-5. ✅ Refresh button works
-
----
-
-## 🐛 TROUBLESHOOTING
-
-### Issue 1: Backend is Slow (First Request)
-
-**Symptom:** First API call takes 30-60 seconds
-
-**Cause:** Render free tier "sleeps" after 15 minutes of inactivity
-
-**Solution:**
-- ✅ This is normal for free tier
-- Wait for backend to "wake up"
-- Subsequent requests will be fast (<200ms)
-
-**For Judges:** Mention that this is free tier behavior, production would use paid tier
-
----
-
-### Issue 2: CORS Error
-
-**Symptom:** Browser console shows CORS error
-
-**Cause:** Backend not allowing frontend origin
-
-**Solution:**
-```bash
-# Check backend CORS settings in backend/app/main.py
-# Should include:
-allow_origins=[
-    "https://sentinex-technologies.github.io",
-    ...
-]
+curl -X DELETE "https://sentinex-api.onrender.com/api/data/clear?confirm=YES_DELETE_ALL"
 ```
 
 ---
 
-### Issue 3: 404 on GitHub Pages
+## 🔄 CI/CD Workflows
 
-**Symptom:** Page shows 404 error
+### GitHub Actions - Frontend Deployment
 
-**Cause:** GitHub Pages not properly configured
+**Workflow:** `.github/workflows/deploy-frontend.yml`
+**Trigger:** Push to `main` branch or manual dispatch
+**Steps:**
+1. Checkout code
+2. Setup Node.js 20
+3. Install dependencies (`npm install`)
+4. Build frontend (`npm run build`)
+5. Upload build artifact
+6. Deploy to GitHub Pages
 
-**Solution:**
-1. Go to repo Settings → Pages
-2. Ensure Source is set to "GitHub Actions"
-3. Re-run the workflow from Actions tab
+**View Workflow:** [Actions Tab](https://github.com/Sentinex-Technologies/sentinex-social-intelligence/actions)
 
----
+### Render - Backend Deployment
 
-### Issue 4: API Calls Failing
+**Config:** `render.yaml`
+**Trigger:** Push to `main` branch
+**Steps:**
+1. Detect Python 3.12
+2. Install dependencies (`pip install -r requirements.txt`)
+3. Start Uvicorn server (`uvicorn app.main:app --host 0.0.0.0 --port $PORT`)
 
-**Symptom:** Network errors in browser console
-
-**Cause:** Wrong API base URL in frontend
-
-**Solution:**
-1. Check `.env.production` has correct Render URL
-2. Rebuild and redeploy frontend
-3. Clear browser cache
-
----
-
-### Issue 5: Build Failed on Render
-
-**Symptom:** Render shows "Build failed"
-
-**Cause:** Missing dependencies or Python version issue
-
-**Solution:**
-1. Check build logs in Render dashboard
-2. Ensure `requirements.txt` is correct
-3. Verify Python version is set to 3.14.0
-4. Manually trigger redeploy
+**View Logs:** [Render Dashboard](https://dashboard.render.com/)
 
 ---
 
-## 🌐 PRODUCTION URLS
+## 🐛 Troubleshooting
 
-After successful deployment:
+### Frontend Shows Empty Screen
+**Problem:** Database has no data  
+**Solution:** Generate synthetic data (see above)
 
-### Frontend (GitHub Pages):
-```
-https://sentinex-technologies.github.io/sentinex-social-intelligence/
-```
+### API Returns 500 Error
+**Problem:** Render backend may be sleeping (free tier)  
+**Solution:** Visit backend URL to wake it up, wait 30 seconds
 
-**Use this URL for:**
-- ✅ SIH submission
-- ✅ Demo to judges
-- ✅ Sharing with evaluators
+### CORS Error in Browser Console
+**Problem:** Frontend origin not allowed  
+**Solution:** Backend already configured for GitHub Pages origin
 
-### Backend (Render):
-```
-https://YOUR-SERVICE-NAME.onrender.com
-```
+### GitHub Actions Build Fails
+**Problem:** CSS syntax errors or Node.js version mismatch  
+**Solution:** Check workflow logs, verify Node.js 20+, validate CSS
 
-**API Documentation:**
-```
-https://YOUR-SERVICE-NAME.onrender.com/api/docs
-```
-
-**Health Check:**
-```
-https://YOUR-SERVICE-NAME.onrender.com/api/health
-```
+### Render Build Fails
+**Problem:** Python version incompatibility  
+**Solution:** Ensure `PYTHON_VERSION=3.12.0` in render.yaml
 
 ---
 
-## 📊 DEPLOYMENT CHECKLIST
+## 📈 Performance Notes
 
-### Before Deployment:
-- [x] Render account created
-- [x] Repository has deployment configuration
-- [x] Backend CORS updated
-- [x] Frontend environment configured
+### Render Free Tier Limitations:
+- **Spin Down:** After 15 min of inactivity
+- **Spin Up:** Takes ~30 seconds on first request
+- **RAM:** 512 MB
+- **Storage:** Ephemeral (SQLite resets on restart)
 
-### Backend Deployment:
-- [ ] Render web service created
-- [ ] Backend URL copied
-- [ ] Health check passing
-- [ ] API docs accessible
-
-### Frontend Deployment:
-- [ ] `.env.production` updated with Render URL
-- [ ] Changes committed and pushed
-- [ ] Merged to main branch
-- [ ] GitHub Pages enabled
-- [ ] Workflow completed successfully
-
-### Verification:
-- [ ] Frontend loads without errors
-- [ ] API calls succeed
-- [ ] Demo data generates
-- [ ] All 6 cards display data
-- [ ] Charts render correctly
+### Data Persistence:
+- ⚠️ **Database resets** when Render service restarts
+- 💡 **Solution:** Re-generate data using the API endpoint
+- 🔮 **Future:** Migrate to PostgreSQL persistent storage
 
 ---
 
-## 🎯 SIH SUBMISSION URLS
+## 🎓 SIH 2026 Submission Details
 
-**For your SIH submission form, use:**
+**Problem Statement:** #26152 - Social Media Analytics for NTRO  
+**Team:** Sentinex Technologies  
+**Institution:** Vignan's Nirula Institute of Technology & Science for Women (VNITSW)  
+**Department:** CSE - AI & ML  
+**Mentor:** Dr. P. Silpa Chaitanya (HoD)
 
-**Live Demo URL:**
-```
-https://sentinex-technologies.github.io/sentinex-social-intelligence/
-```
-
-**API Documentation:**
-```
-https://YOUR-RENDER-URL.onrender.com/api/docs
-```
-
-**GitHub Repository:**
-```
-https://github.com/Sentinex-Technologies/sentinex-social-intelligence
-```
+**Team Members:**
+- 23NN1A4206 - Bhogireddy Reshma
+- 23NN1A4227 - Konda Sai Nija
+- 24NN1A4202 - Adduru Likhitha
+- 24NN1A4227 - Kalluru Pranathi
+- 24NN1A4255 - Konni Lakshmi Neha Sri
+- 24NN1A4256 - Kotha Aparna
 
 ---
 
-## 💡 TIPS FOR DEMO
+## 📚 Additional Resources
 
-### For Judges:
-1. **Mention free tier:** "Backend runs on Render free tier, so first request takes 30-60 seconds to wake up. In production, we'd use paid tier for instant responses."
-
-2. **Highlight features:**
-   - "Dashboard auto-deployed via GitHub Actions"
-   - "Backend API documented with Swagger"
-   - "CORS properly configured for security"
-   - "Production-ready architecture"
-
-3. **Show scalability:**
-   - "Easy to upgrade to paid tier ($7/month)"
-   - "Can add PostgreSQL database"
-   - "Can add Redis for caching"
-   - "Horizontal scaling supported"
-
-### Performance Expectations:
-- **First request:** 30-60 seconds (cold start)
-- **Subsequent requests:** <200ms
-- **Data generation:** 5-10 seconds
-- **Sentiment analysis:** 3-5 seconds
+- **Architecture Diagrams:** [COMPLETE_ARCHITECTURE_DIAGRAMS.md](./COMPLETE_ARCHITECTURE_DIAGRAMS.md)
+- **Main README:** [README.md](./README.md)
+- **API Documentation:** https://sentinex-api.onrender.com/api/docs
+- **Organization Profile:** https://github.com/Sentinex-Technologies/.github
 
 ---
 
-## 🔄 CONTINUOUS DEPLOYMENT
+## ✅ Deployment Checklist
 
-### Auto-Deploy is Enabled!
-
-**Frontend:**
-- ✅ Push to `main` branch → Auto-deploys via GitHub Actions
-- ✅ Takes 2-3 minutes
-
-**Backend:**
-- ✅ Push to `main` branch → Auto-deploys via Render
-- ✅ Takes 3-5 minutes
-
-**To update:**
-```bash
-git add .
-git commit -m "Update message"
-git push origin main
-# Wait for auto-deployment!
-```
+- [x] Frontend deployed to GitHub Pages
+- [x] Backend deployed to Render
+- [x] CORS configured correctly
+- [x] Environment variables set
+- [x] Database schema created
+- [x] Sample data generated
+- [x] All 5 NTRO components operational
+- [x] API documentation accessible
+- [x] CI/CD workflows configured
+- [x] Organization README updated
 
 ---
 
-## 📞 SUPPORT
+**🎉 Deployment completed successfully on September 29, 2026**
 
-### If You Face Issues:
-
-**Render Support:**
-- Dashboard: https://dashboard.render.com
-- Docs: https://render.com/docs
-- Status: https://status.render.com
-
-**GitHub Pages:**
-- Settings: Repository → Settings → Pages
-- Actions: Repository → Actions tab
-- Docs: https://docs.github.com/pages
-
----
-
-## 🎉 SUCCESS!
-
-If you've followed all steps and verifications pass:
-
-✅ **Frontend deployed to GitHub Pages**  
-✅ **Backend deployed to Render**  
-✅ **APIs working correctly**  
-✅ **Demo data generates successfully**  
-✅ **All 6 components operational**
-
-**🏆 Your project is now LIVE and ready for SIH 2026 submission! 🚀**
-
----
-
-*Deployment Guide Version 1.0*  
-*Last Updated: September 29, 2026*  
-*Team: Sentinex Technologies - VNITSW*
+**Last Data Generation:** September 29, 2026 at 11:12 PM IST  
+**Next Steps:** Monitor performance, gather feedback, optimize for production
