@@ -221,8 +221,6 @@ async def get_sentiment_distribution(
     - platform: Filter by platform
     - days_back: Historical period (1-365 days)
     """
-    from sqlalchemy import cast, Date
-    
     start_date = datetime.utcnow() - timedelta(days=days_back)
     query = db.query(SocialPost).filter(SocialPost.created_at >= start_date)
     
@@ -235,21 +233,21 @@ async def get_sentiment_distribution(
         func.count(SocialPost.id)
     ).group_by(SocialPost.sentiment_label).all()
     
-    # Sentiment over time (daily)
+    # Sentiment over time (daily) - using strftime for SQLite compatibility
     sentiment_timeline = query.with_entities(
-        cast(SocialPost.created_at, Date).label('date'),
+        func.strftime('%Y-%m-%d', SocialPost.created_at).label('date'),
         SocialPost.sentiment_label,
         func.count(SocialPost.id).label('count')
     ).group_by(
-        cast(SocialPost.created_at, Date),
+        func.strftime('%Y-%m-%d', SocialPost.created_at),
         SocialPost.sentiment_label
     ).all()
     
     # Average sentiment score over time
     avg_sentiment_timeline = query.with_entities(
-        cast(SocialPost.created_at, Date).label('date'),
+        func.strftime('%Y-%m-%d', SocialPost.created_at).label('date'),
         func.avg(SocialPost.sentiment_score).label('avg_sentiment')
-    ).group_by(cast(SocialPost.created_at, Date)).all()
+    ).group_by(func.strftime('%Y-%m-%d', SocialPost.created_at)).all()
     
     return {
         "status": "success",
