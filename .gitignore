@@ -252,3 +252,21 @@ site/
 # - CONTRIBUTING.md
 # - docs/ARCHITECTURE.md
 # - docs/DEVELOPMENT_WORKFLOW.md
+
+# ============================================================
+# PRESENTATION & SUBMISSION FILES
+# ============================================================
+# Presentation files (for SIH submission, not for repo)
+*.ppt
+*.pptx
+*.pdf
+!Reference_Doc.pdf
+!ARCHITECTURE.pdf
+
+# College/Team logos (organization profile only)
+*vignan*.png
+*vignan*.jpg
+*VNITW*.png
+*VNITW*.jpg
+# But keep Sentinex logo
+!Sentinex_Logo.png
