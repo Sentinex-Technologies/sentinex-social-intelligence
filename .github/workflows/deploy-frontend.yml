@@ -26,6 +26,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       
+      - name: Debug - List directory structure
+        run: |
+          echo "Current directory:"
+          pwd
+          echo "Directory contents:"
+          ls -la
+          echo "Looking for frontend-react:"
+          ls -la frontend-react/ || echo "frontend-react not found!"
+      
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
