@@ -222,6 +222,7 @@ raw_data/
 *.json
 !demo_data.json
 !synthetic_data.json
+!frontend-react/package.json
 
 # ML models (large files)
 *.pkl
