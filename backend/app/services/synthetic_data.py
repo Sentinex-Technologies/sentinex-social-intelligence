@@ -256,6 +256,15 @@ class SyntheticDataGenerator:
             else:
                 sentiment_score = random.uniform(-0.3, 0.3)
             
+            # Generate 5-dimensional emotions (Component B)
+            emotions = {
+                "sarcasm": round(random.uniform(0.0, 0.4), 2),
+                "anxiety": round(random.uniform(0.0, 0.5) if sentiment_label == "negative" else random.uniform(0.0, 0.2), 2),
+                "excitement": round(random.uniform(0.3, 0.8) if sentiment_label == "positive" else random.uniform(0.0, 0.3), 2),
+                "supportive": round(random.uniform(0.2, 0.7) if sentiment_label == "positive" else random.uniform(0.0, 0.3), 2),
+                "against": round(random.uniform(0.2, 0.7) if sentiment_label == "negative" else random.uniform(0.0, 0.3), 2)
+            }
+            
             # Engagement metrics (Component A requirement)
             # More influential authors get more engagement
             engagement_multiplier = author.followers_count / 1000
@@ -280,6 +289,7 @@ class SyntheticDataGenerator:
                 views_count=views,
                 sentiment_score=sentiment_score,
                 sentiment_label=sentiment_label,
+                emotions=emotions,
                 topics=[theme],
                 hashtags=hashtags,
                 trending_score=random.uniform(0.0, 1.0),
