@@ -57,9 +57,15 @@ app = FastAPI(
 )
 
 # Configure CORS
+# Allow both local development and production GitHub Pages
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://localhost:3000"],
+    allow_origins=[
+        "http://localhost:5173",
+        "http://localhost:3000",
+        "https://sentinex-technologies.github.io",  # GitHub Pages
+        "https://*.onrender.com",  # Render preview deployments
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

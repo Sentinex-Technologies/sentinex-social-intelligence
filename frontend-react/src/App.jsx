@@ -3,7 +3,10 @@ import axios from 'axios'
 import './App.css'
 import { ComponentA, ComponentB, ComponentC, ComponentD, ComponentE } from './components/NTROComponents'
 
-const API_BASE = '/api'
+// API Base URL - uses environment variable in production, proxy in development
+const API_BASE = import.meta.env.VITE_API_BASE_URL 
+  ? `${import.meta.env.VITE_API_BASE_URL}/api`
+  : '/api'
 
 // Sentinex Brand Colors from Logo
 const COLORS = {
